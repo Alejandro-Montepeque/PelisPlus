@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo '🚧 Usando el linter y formateando el proyecto antes de que hagas tu commit.'
+
+# Check ESLint Standards
+npm run lint ||
+(
+  echo '❌ No me creo que no hayas revisado los errores antes de commitear, que bueno que estoy acá para detenerte. 🧐'
+  false;
+)
+
+npm run format ||
+{
+  echo '❌ No me creo que no hayas aplicado formato al código antes de commitear, pero solo por si acaso. 🫰🏻'
+  false;
+}
